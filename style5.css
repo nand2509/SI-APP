@@ -1,0 +1,50 @@
+.container{
+    background-color: rgb(2, 2, 2);
+    width: 500px;
+    height: 250px;
+    margin: 100px;
+    outline: solid 1px black; 
+}
+.head1{
+    color: rgb(244, 236, 236);
+}
+.head2{
+    color: rgb(244, 236, 236);
+}
+.head3{
+    color: rgb(244, 236, 236);
+}
+.head4{
+    color: rgb(248, 243, 243);
+}
+.head5{
+    color: rgb(13, 12, 12);
+}
+.res1{
+    color: rgb(248, 243, 243);
+}
+@media screen and (max-width: 900px){
+    .container{
+        grid-template-columns: 1fr;
+    }
+
+    .head1{
+        display: none;
+    }
+    .head2{
+        display: none;
+    }
+    .head3{
+        display: none;
+    }
+    .head4{
+        display: none;
+    }
+    .head5{
+        display: none;
+    }
+
+    .login-content{
+        justify-content: center;
+    }
+}

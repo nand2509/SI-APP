@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+     <title>Heart Disease Prediction</title>
+     <meta charset="utf-8">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"> </script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"> </script>
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Style.css')}}">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+     <link rel="stylesheet" type="text/css" href="/css/global.css">
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Style.css')}}">
+
+     <style>
+        footer {
+            background: rgb(12, 12, 14);
+             color: white;
+             margin-top:100px;
+           }
+           footer a {
+             color: #fff;
+             font-size: 14px;
+             transition-duration: 0.2s;
+           }
+           footer a:hover {
+             color: #FA944B;
+             text-decoration: none;
+           }
+           .copy {
+             font-size: 12px;
+             padding: 10px;
+             border-top: 1px solid #FFFFFF;
+           }
+           .footer-middle {
+             padding-top: 2em;
+             color: white;
+           }
+           ul.social-network {
+             list-style: none;
+             display: inline;
+             margin-left: 0 !important;
+             padding: 0;
+           }
+           ul.social-network li {
+             display: inline;
+             margin: 0 5px;
+           }
+
+           .social-network a.icoFacebook:hover {
+             background-color: #3B5998;
+           }
+           .social-network a.icoLinkedin:hover {
+             background-color: #007bb7;
+           }
+           .social-network a.icoFacebook:hover i
+           {
+             color: #fff;
+           }
+           .social-network a.icoLinkedin:hover i {
+             color: #fff;
+           }
+           .social-network a.socialIcon:hover {
+             color: #44BCDD;
+           }
+           .socialHoverClass {
+             color: #44BCDD;
+           }
+           .social-circle li a {
+             display: inline-block;
+             position: relative;
+             margin: 0 auto 0 auto;
+             -moz-border-radius: 50%;
+             -webkit-border-radius: 50%;
+             border-radius: 50%;
+             text-align: center;
+             width: 30px;
+             height: 30px;
+             font-size: 15px;
+           }
+           .social-circle li i {
+             margin: 0;
+             line-height: 30px;
+             text-align: center;
+           }
+           .social-circle li a:hover i
+           {
+             -moz-transform: rotate(360deg);
+             -webkit-transform: rotate(360deg);
+             -ms--transform: rotate(360deg);
+             transform: rotate(360deg);
+             -webkit-transition: all 0.2s;
+             -moz-transition: all 0.2s;
+             -o-transition: all 0.2s;
+             -ms-transition: all 0.2s;
+             transition: all 0.2s;
+           }
+           .triggeredHover {
+             -moz-transform: rotate(360deg);
+             -webkit-transform: rotate(360deg);
+             -ms--transform: rotate(360deg);
+             transform: rotate(360deg);
+             -webkit-transition: all 0.2s;
+             -moz-transition: all 0.2s;
+             -o-transition: all 0.2s;
+             -ms-transition: all 0.2s;
+             transition: all 0.2s;
+           }
+           .social-circle i {
+             color: #595959;
+             -webkit-transition: all 0.8s;
+             -moz-transition: all 0.8s;
+             -o-transition: all 0.8s;
+             -ms-transition: all 0.8s;
+             transition: all 0.8s;
+           }
+           .social-network a {
+             background-color: #F9F9F9;
+           }
+           .social-network a:hover {
+           background: #ff304d;
+           }
+            body{
+                background: #4d0026;
+                background: linear-gradient(to left, #667292 0%, #a2b9bc 100%);
+            }
+
+            footer a{
+              color: #fff;
+            }
+            footer a:hover{
+              color: #fff;
+            }
+            .centerdiv{
+              height: 15vh;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+            .centerdiv a{
+              height: 30px;
+              width: 30px;
+              background-color: #f5f6fa;
+              border-radius: 50px;
+              text-align: center;
+              margin: 5px;
+              line-height: 30px;
+              box-shadow: 1px 4px 2px 2px #dcdde1;
+              position: relative;
+              overflow: hidden;
+            }
+            .centerdiv a i{
+              transition: all 0.3s linear;
+            }
+            .centerdiv a:hover i{
+              transform: scale(1.5);
+              color: #f5f6fa;
+            }
+            .centerdiv a:before{
+              content: "";
+              width: 120%; height: 120%;
+              position: absolute;
+              top: 90%; left: -50%;
+              background-color: #00a8ff;
+              transform: rotate(60deg);
+            }
+
+            .centerdiv a:hover:before{
+              animation: socialicons 0.8s 1;
+              animation-fill-mode: forwards;
+            }
+            @keyframes socialicons {
+
+              0%{ top: 90%; left: -50%;}
+              50%{ top: -60%; left: -10%;}
+              100%{ top: -10%; left: -10%}
+            }
+
+            .fa-facebook-f{
+              color: #e84393;
+            }
+            .fa-instagram{
+              color: #e84393;
+            }
+            .fa-github{
+              color: #e84118;
+            }
+            .fa-linkedin{
+              color: #0097e6;
+            }
+            .fa-twitter{
+              color: #0097e6;
+            }
+            @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap');
+            .navbar {
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+               padding: 20px;
+               background-color: rgb(12, 7, 1);
+               color: #fff;
+              }
+              .nav-links a {
+               color: #fff;
+              }
+              /* LOGO */
+              .logo {
+               font-size: 42px;
+              }
+              .logo.services:hover{
+                background-color: rgb(10, 1, 1);
+                color: rgb(102, 231, 37);
+              }
+         body{
+             background: #e6ccff;
+             background: linear-gradient(to left, #667292 0%, #a2b9bc 100%);
+         }
+         footer a{
+           color: #fff;
+         }
+         footer a:hover{
+           color: #fff;
+         }
+         .centerdiv{
+           height: 15vh;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+         }
+         .centerdiv a{
+           height: 30px;
+           width: 30px;
+           background-color: #f5f6fa;
+           border-radius: 50px;
+           text-align: center;
+           margin: 5px;
+           line-height: 30px;
+           box-shadow: 1px 4px 2px 2px #dcdde1;
+           position: relative;
+           overflow: hidden;
+         }
+         .centerdiv a i{
+           transition: all 0.3s linear;
+         }
+         .centerdiv a:hover i{
+           transform: scale(1.5);
+           color: #f5f6fa;
+         }
+         .centerdiv a:before{
+           content: "";
+           width: 120%; height: 120%;
+           position: absolute;
+           top: 90%; left: -50%;
+           background-color: #00a8ff;
+           transform: rotate(60deg);
+         }
+
+         .centerdiv a:hover:before{
+           animation: socialicons 0.8s 1;
+           animation-fill-mode: forwards;
+         }
+         @keyframes socialicons {
+
+           0%{ top: 90%; left: -50%;}
+           50%{ top: -60%; left: -10%;}
+           100%{ top: -10%; left: -10%}
+         }
+
+         .fa-facebook-f{
+           color: #e84393;
+         }
+         .fa-instagram{
+           color: #e84393;
+         }
+         .fa-github{
+           color: #e84118;
+         }
+         .fa-linkedin{
+           color: #0097e6;
+         }
+         .fa-twitter{
+           color: #0097e6;
+         }
+         .button{
+           margin-left: 62%;
+           color: rgb(210, 9, 9);
+           background-color:#edf106;
+
+         }
+         .aboutme{
+            margin-right: 10%;
+            margin-left: 50%;
+            background-color:#edf106;
+
+         }
+         .feedback{
+             text-align: center;
+             margin-left: 30%;
+             text-align:center;
+             background-color:#edf106;
+
+         }
+         .move{
+             font-size: xx-large;
+             font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+             font-style:unset;
+             font-weight:bolder;
+             font-display:unset;
+             font-feature-settings: "tnam";
+             scrollbar-3dlight-color: aqua;
+         }
+         .navbar-custom {
+          background-color: #ff5500;
+      }
+
+      /* change the brand and text color */
+      .navbar-custom .navbar-brand,
+      .navbar-custom .navbar-text {
+          color: rgba(255,255,255,.8);
+      }
+
+      /* change the link color and padding  */
+      .navbar-custom .navbar-nav .nav-link {
+          color: rgba(255,255,255,.5);
+          padding: .75rem 1rem;
+      }
+
+      /* change the color and bg color of active or hovered links */
+      .navbar-custom .nav-item.active .nav-link,
+      .navbar-custom .nav-item:hover .nav-link {
+          color: #ffffff;
+          background-color: #333;
+      }
+
+      /* for dropdown only - change the color of droodown */
+      .navbar-custom .dropdown-menu {
+          background-color: #ff5500;
+      }
+      .navbar-custom .dropdown-item {
+          color: #ffffff;
+      }
+      .navbar-custom .dropdown-item:hover,
+      .navbar-custom .dropdown-item:focus {
+          color: #333333;
+          background-color: rgba(255,255,255,.5);
+      }
+      .animate-charcter
+{
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #231557 0%,
+    #44107a 29%,
+    #ff1361 67%,
+    #fff800 100%
+
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 20% auto;
+  color: #fff;
+  background-clip: text;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+      font-size: 80px;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+
+
+     </style>
+
+  </head>
+
+<body>
+<nav class="navbar navbar-expand-sm navbar-custom py-0">
+  <a href="https://myportfolio-nkv.netlify.app/about%20me.html" class="navbar-brand">About Me</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCustom">
+      <i class="fa fa-bars fa-lg py-1 text-white"></i>
+  </button>
+  <div class="navbar-collapse collapse" id="navbarCustom">
+      <ul class="navbar-nav">
+          <li class="nav-item active">
+              <a class="nav-link" href="https://nandkishorvyas70.wixsite.com/myportfolio/about-4">My Projects</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="https://nandkishorvyas70.wixsite.com/my-site/home">My Blog</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="https://nandkishorvyas70.wixsite.com/myportfolio/blank-1">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="mailto:nandkishorvyas70@gmail.com">Feedback</a>
+        </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="https://nandkishorvyas70.wixsite.com/myportfolio">My Portfolio</a>
+                  <a class="dropdown-item" href="https://nkv-verilog-project.netlify.app/">My College Projects</a>
+                  <a class="dropdown-item" href="https://nandkishorvyas70.wixsite.com/myportfolio/team-1">My Official Site</a>
+              </div>
+          </li>
+      </ul>
+      <span class="ml-auto navbar-text"></span>
+  </div>
+</nav>
+
+ <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h3 class="animate-charcter">MY SI AND CI CALCULATOR APP</h3>
+      </div>
+    </div>
+  </div>
+
+
+
+  <center>
+    <div class="container">
+ 
+ <table>
+
+
+     <tr>
+         <td style="font-size: larger;" class="head2">Enter Principal</td>
+         <td>
+             <input type="text" name="" id="p">
+         </td>
+     </tr>
+
+
+     <tr>
+         <td style="font-size: larger;" class="head3">Enter Time</td>
+         <td>
+             <input type="text" name="" id="t">
+         </td>
+     </tr>
+
+
+     <tr>
+         <td style="font-size: larger;" class="head4">Enter Rate</td>
+         <td>
+             <input type="text" name="" id="r">
+         </td>
+     </tr>
+
+     <tr>
+         <td>
+             <button onclick="ci()" style="font-size: larger;" class="head5">
+                 Calculate
+             </button>
+         </td>
+     </tr>
+ </table>
+ <div id="res" class="res1">
+
+ </div>
+ </div>
+</center>
+
+    
+   </div>
+   </div>
+   </div>
+ </section>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<footer class="mainfooter" role="contentinfo">
+    <div class="footer-middle">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <div class="footer-pad">
+            <h4>About My Page</h4>
+            <ul class="list-unstyled">
+              <li> <a href="#"> </a> </li>
+              <li> <a href="https://myportfolio-nkv.netlify.app/about%20me.html">About Me</a></li>
+              <li> <a href="https://nandkishorvyas70.wixsite.com/my-site/about-1">About My College</a></li>
+              <li> <a href="https://nandkishorvyas70.wixsite.com/my-site/about-1-1">About My Hostel</a></li>
+              <li> <a href="http://recsonbhadra.ac.in">My College Site</a></li>
+
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="footer-pad">
+            <h4>My Projects</h4>
+            <ul class="list-unstyled">
+              <li><a href="https://myportfolio-nkv.netlify.app/"> My Blog </a> </li>
+              <li><a href="https://nkv-verilog-project.netlify.app/">My Academics Projects</a> </li>
+              <li><a href="https://nandkishorvyas70.wixsite.com/my-site">My Site</a></li>
+              <li><a href="https://nandkishorvyas70.wixsite.com/myportfolio/blank-1">My Contact Page</a></li>
+
+
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="footer-pad">
+            <h4>Contact Me</h4>
+            <ul class="list-unstyled">
+              <li> <a href="#"> +91 9305790731 </a> </li>
+              <li><a href="https://api.whatsapp.com/send?phone=9305790731">Whats app - 9305790731</a></li>
+              <li> <a href="mailto:nandkishorvyas70@gmail.com"> nandkishorvyas70@gmail.com </a> </li>
+              <li> <a href="https://nandkishorvyas70.wixsite.com/myportfolio">nandkishorvyas70.wixsite.com/myportfolio </a> </li>
+              <li> <a href="mailto:nandvyas6@gmail.com">nandvyas6@gmail.com</a> </li>
+
+            </ul>
+          </div>
+        </div>
+          <div class="col-md-3">
+              <h4> Follow Me </h4>
+              <ul class="social-network social-circle">
+               <li> <a href="https://www.facebook.com/profile.php?id=100042183222533" class="icoFacebook" title="Facebook"> <i class="fa fa-facebook"> </i> </a> </li>
+               <li> <a href="https://www.linkedin.com/in/nand-kishor-vyas-b6b7b71ba/" class="icoLinkedin" title="Linkedin"> <i class="fa fa-linkedin"> </i> </a> </li>
+               <li> <a href="https://www.instagram.com/n_k_v55066/?hl=en" class="icoInstagram" title="Instagram"> <i class="fa fa-instagram"> </i> </a> </li>
+               <li> <a href="https://twitter.com/NandKis58300894/media" class="icoTwitter" title="Twitter"> <i class="fa fa-twitter"> </i> </a> </li>
+              </ul>
+      </div>
+      </div>
+      <div class="row">
+      <div class="col-md-12 copy">
+      <p class="text-center"> © Copyright 2022 - <a href="https://nandkishorvyas70.wixsite.com/myportfolio">@nkv  All rights reserved. </p> </a>
+
+      </div>
+      </div>
+    </div>
+    </div>
+  </footer>
+  <script src="./app4.js"></script>
+</body>
+</html>
